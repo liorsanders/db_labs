@@ -1,0 +1,17 @@
+1. a: INSERT INTO Users
+    (NAME)
+    VALUES("Maria Curie");
+   b:  INSERT INTO Albums (NAME, CREATION_DATE, USER_ID) SELECT "My Pictures", 0,  id FROM USERS where name = "Maria Curie"; 
+   c: INSERT INTO PICTURES (NAME, LOCATION, CREATION_DATE, ALBUM_ID)
+    VALUES("a", "Poland", 1898, 12), ("b", "Poland", 1920, 12), ("c", "Poland", 1883, 12);
+   d: INSERT INTO TAGS (PICTURE_ID, USER_ID) VALUES(18, 13), (19, 13), (20, 13);
+2: UPDATE USERS SET name = "DBG" WHERE name = "David Ben-gurion";
+3: a: INSERT INTO USERS (NAME) VALUES("Queen Elizabeth 2"); 
+    b: INSERT INTO Albums (NAME, CREATION_DATE, USER_ID) SELECT "Her Majesty", 2021, id from users where name = "Queen Elizabeth 2";
+    c: INSERT INTO PICTURES (NAME, LOCATION, CREATION_DATE, ALBUM_ID)
+    VALUES("a", "England", 2015, 13), ("b", "England", 1933, 13), ("c", "England", 1945, 13);
+    d: INSERT INTO TAGS (PICTURE_ID, USER_ID) VALUES(21, 13), (22, 13), (23, 13);
+4: a: because some of the other tables are dependant on the pictures as a FOREIGN KEY
+   b: you need to remove all the columns dependant on the pictures and only then remove the picture
+   c: DELETE FROM TAGS WHERE PICTURE_ID = 23; 
+      DELETE FROM PICTURES WHERE ID = 23;
