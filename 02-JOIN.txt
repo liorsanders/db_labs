@@ -1,7 +1,7 @@
 **1**
 SELECT albums.name, users.name FROM albums
 INNER JOIN users
-    ON users.id = albums.id
+    ON users.id = albums.user_id
 **2**
 SELECT  pictures.name, albums.name FROM pictures
 INNER JOIN albums
