@@ -44,7 +44,7 @@ void init_db(sqlite3** db) {
 	//	"Prefix INTEGER NOT NULL);";
 	my_exec(*db, statement.str().c_str());
 	//create phone table
-	statement.str("CREATE TABLE IF NOT EXISTS Phones (PhoneId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,PhonePrefixID INTEGER null, FOREIGN KEY(PhonePrefixID) REFERENCES PhonePrefixes(PhonePrefixID));");
+	statement.str("CREATE TABLE IF NOT EXISTS Phones (PhoneId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,PhonePrefixID INTEGER null, PhoneNumber TEXT NOT NULL, PersonID INTEGER null ,FOREIGN KEY(PhonePrefixID) REFERENCES PhonePrefixes(PhonePrefixID), FOREIGN KEY(PersonID) REFERENCES PERSONS(PersonID));");
 	my_exec(*db, statement.str().c_str());
 }
 
