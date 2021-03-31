@@ -33,7 +33,9 @@ void init_db(sqlite3** db) {
 		"ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," <<
 		"LAST_NAME TEXT NOT NULL," <<
 		"FIRST_NAME TEXT NOT NULL," <<
-		"EMAIL TEXT NOT NULL);";
+		"EMAIL TEXT NOT NULL," <<
+		"PhonePrefix TEXT NOT NULL," <<
+		"PhoneNumber TEXT NOT NULL);";
 	my_exec(*db, statement.str().c_str());
 	statement.str("CREATE TABLE IF NOT EXISTS PhonePrefixes (PhonePrefixID INTEGER PRIMARY KEY NOT NULL,Prefix TEXT NOT NULL);");
 	//create the phone prefix table
