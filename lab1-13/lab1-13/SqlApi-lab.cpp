@@ -35,7 +35,7 @@ void init_db(sqlite3** db) {
 		"FIRST_NAME TEXT NOT NULL," <<
 		"EMAIL TEXT NOT NULL);";
 	my_exec(*db, statement.str().c_str());
-	statement.str("CREATE TABLE IF NOT EXISTS PhonePrefixes (PhonePrefixID INTEGER PRIMARY KEY NOT NULL,Prefix INTEGER NOT NULL);");
+	statement.str("CREATE TABLE IF NOT EXISTS PhonePrefixes (PhonePrefixID INTEGER PRIMARY KEY NOT NULL,Prefix TEXT NOT NULL);");
 	//create the phone prefix table
 	//statement << "CREATE TABLE IF NOT EXISTS PhonePrefixes (" <<
 	//	"PhonePrefixID INTEGER PRIMARY KEY NOT NULL," <<
