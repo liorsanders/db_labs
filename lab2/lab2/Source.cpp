@@ -12,13 +12,15 @@ using std::stringstream;
 
 void my_exec(sqlite3* db, const char* sqlStatement);
 
+void delete_info(sqlite3* db) {
+	my_exec(db, "DELETE FROM phones WHERE phonenumber = '0285734561';");
+	my_exec(db, "DELETE FROM persons WHERE id = 2;");
+}
+
 void update_info(sqlite3* db) {
-	//1
 	my_exec(db, "INSERT INTO PhonePrefixes (Prefix) VALUES ('089');");
-	//2
 	my_exec(db, "UPDATE PhonePrefixes SET Prefix = '078' WHERE Prefix = '089';");
-	//3
-	my_exec(db, "UPDATE PERSONS SET first_name = 'Sonia', last_name = 'Elimelech' WHERE ID = 1");
+	my_exec(db, "UPDATE PERSONS SET first_name = 'Sonia', last_name = 'Elimelech' WHERE ID = 1;");
 }
 
 string enter_phones_helper(const string& phoneNumber, int n) {
@@ -96,11 +98,8 @@ void init_db(sqlite3** db) {
 		"PhonePrefix TEXT NOT NULL," <<
 		"PhoneNumber TEXT NOT NULL);";
 	my_exec(*db, statement.str().c_str());
+	//create phoneprefixes table
 	statement.str("CREATE TABLE IF NOT EXISTS PhonePrefixes (PhonePrefixID INTEGER PRIMARY KEY NOT NULL,Prefix TEXT NOT NULL);");
-	//create the phone prefix table
-	//statement << "CREATE TABLE IF NOT EXISTS PhonePrefixes (" <<
-	//	"PhonePrefixID INTEGER PRIMARY KEY NOT NULL," <<
-	//	"Prefix INTEGER NOT NULL);";
 	my_exec(*db, statement.str().c_str());
 	//create phone table
 	statement.str("CREATE TABLE IF NOT EXISTS Phones (PhoneId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,PhonePrefixID INTEGER null, PhoneNumber TEXT NOT NULL, PersonID INTEGER null ,FOREIGN KEY(PhonePrefixID) REFERENCES PhonePrefixes(PhonePrefixID), FOREIGN KEY(PersonID) REFERENCES PERSONS(PersonID));");
@@ -123,11 +122,13 @@ int main() {
 		}
 	}
 	//part 1
-	enter_prefixes(db); //1
-	enter_people(db); //2
-	enter_phones(db); //3
+	enter_prefixes(db); 
+	enter_people(db); 
+	enter_phones(db); 
 	
-	update_info(db); //4
+	update_info(db); 
+
+	delete_info(db);
 
 	sqlite3_close(db);
 	db = nullptr;
