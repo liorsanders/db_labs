@@ -12,6 +12,15 @@ using std::stringstream;
 
 void my_exec(sqlite3* db, const char* sqlStatement);
 
+void update_info(sqlite3* db) {
+	//1
+	my_exec(db, "INSERT INTO PhonePrefixes (Prefix) VALUES ('089');");
+	//2
+	my_exec(db, "UPDATE PhonePrefixes SET Prefix = '078' WHERE Prefix = '089';");
+	//3
+	my_exec(db, "UPDATE PERSONS SET first_name = 'Sonia', last_name = 'Elimelech' WHERE ID = 1");
+}
+
 string enter_phones_helper(const string& phoneNumber, int n) {
 	return "('" + std::to_string(n) + "', '" + phoneNumber + "', '" + std::to_string(n) + "'),";
 }
@@ -113,11 +122,13 @@ int main() {
 			std::cout << e.what() << std::endl;
 		}
 	}
-
+	//part 1
 	enter_prefixes(db); //1
 	enter_people(db); //2
 	enter_phones(db); //3
 	
+	update_info(db); //4
+
 	sqlite3_close(db);
 	db = nullptr;
 
