@@ -3,7 +3,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,c++
 
 
-
+# for lab 1
+query.sql
 
 ### C++ ###
 # Prerequisites
